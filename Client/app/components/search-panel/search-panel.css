@@ -1,0 +1,35 @@
+div.search-panel {
+	font-size: 20px;
+	display: inline-block;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	position: relative;
+	text-align: center;
+	height: 45px;
+	width: 700px;
+}
+input {
+	position: absolute;
+	font-family: 'Didact Gothic', sans-serif;
+	display: inline-block;
+	left: 0;
+	background-color: #ffffff;
+	padding: 0;
+	border: none;
+	height: 45px;
+	width: 655px;
+	color: #213540;
+}
+
+div.button-search {
+	position: absolute;
+	display: inline-block;
+	right: 0;
+	background: url("../../../img/search/zoom.png") #006894 center no-repeat;
+	background-size: 50%;
+	height: 45px;
+	width: 45px;
+	border: none;
+	border-bottom-right-radius:8px;
+	border-top-right-radius:8px;
+}
