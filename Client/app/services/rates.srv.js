@@ -1,6 +1,6 @@
 angular.module('bestrate').service('RateSrv', ['$rootScope', function ($rootScope) {
 
-    window.RatesSrv=this;
+    window.RateSrv=this;
 
     this.Filter = '';
 

@@ -7,56 +7,7 @@
 										}"><em>&nbsp;&nbsp;Daily</em>Deals
 	<div class="rate-item"
 		 ng-repeat="item in RateSrv.Rates | filter:filterResults | limitTo:20">
-		<div class="item-content"
-			 ng-style="{
-				 	height:370*scale+'px',
-					width:350*scale+'px',
-					'border-radius': 10*scale+'px',
-					'margin':20*scale+'px '+'0px 0px '+20*scale+'px'}
-					">
-			<div class="picture" ng-style="{
-											height:230*scale+'px',
-											width:330*scale+'px',
-											background: 'url({{item.Image}}) center no-repeat',
-											'background-size':'contain',
-											margin: 10*scale+'px'
-											}">
-			</div>
-
-			<div class="title" ng-style="{
-											'font-size':23*scale+'px',
-											width:320*scale+'px',
-											margin:15*scale+'px'
-											}">{{item.Title}}
-										</div>
-
-			<div class="item-base" ng-style="{
-			height:60*scale+'px'
-			}">
-				<div class="cost" ng-style="{
-																'font-size':26*scale+'px',
-																bottom: 10*scale+'px',
-																right:20*scale+'px',
-																height:40*scale+'px',
-																width:160*scale+'px',
-																'line-height': 40*scale+'px',
-																'border-radius': 10*scale+'px'}">{{item.Cost}}
-								</div>
-				<div class="common_rate" ng-style="{
-							bottom:22*scale+'px',
-							left:20*scale+'px',
-							'width': 5*Math.floor(22*scale)+'px',
-							height: Math.floor(21*scale)+'px',
-							'background-size':Math.floor(22*scale)+'px auto'
-									}">
-								<div id="rate" ng-style="{
-													width:(item.Rate / 5) * 100+'%',
-													'background-size':'auto '+21*scale+'px'}"></div>
-							</div>
-
-			</div>
-
-		</div>
+		<item-card></item-card>
 	</div>
 
 

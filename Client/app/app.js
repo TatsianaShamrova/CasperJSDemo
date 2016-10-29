@@ -31,11 +31,11 @@ App.scale = 1;
 
 
 App.resize = function () {
-    if (window.innerWidth < 1000) {
-        this.scale = (window.innerWidth * 2.5) / 1920
+    if (window.innerWidth > 1000) {
+        this.scale = (window.innerWidth) / 1920;
     }
     else {
-        this.scale = 1
+        this.scale = (window.innerWidth) * 2 / 1920;
     }
     App.applyScale(document.body);
 };
@@ -45,6 +45,8 @@ App.applyScale = function (el) {
     var els = $(el).find('[stl]');
 
     els.push(el);
+
+    console.log(this.scale, els);
 
     _.each(els, function (el) {
 
@@ -104,3 +106,4 @@ window.addEventListener('resize', function () {
 });
 
 App.resize();
+
