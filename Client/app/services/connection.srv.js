@@ -4,7 +4,7 @@ angular.module('bestrate').service('ConnectionSrv', ['$rootScope', function ($ro
 
     this.connect = function (main_scope) {
 
-        var socket = this.Socket = new WebSocket('ws://localhost:3002');
+        var socket = this.Socket = new WebSocket('ws://5.45.119.19:3002');
 
         this.Socket.onopen = function () {
 
