@@ -11,11 +11,11 @@ BR.Grabber = new Service({
     },
 
     run: function () {
-        this.runCasperjsProcess();
+        //this.runCasperjsProcess();
 
         setInterval(function () {
 
-            BR.Grabber.runCasperjsProcess()
+            //BR.Grabber.runCasperjsProcess()
 
         }, 3600 * 1000);
     },
