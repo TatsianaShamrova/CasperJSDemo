@@ -50,7 +50,11 @@ BR.Mongoose.connect('mongodb://localhost/casper-js-demo-tatiana');
 
 BR.Database = BR.Mongoose.connection;
 BR.Database.on('error', console.error.bind(console, 'connection error:'));
-BR.Database.once('open', function () {
+
+var MongoClient = require('mongodb').MongoClient;
+MongoClient.connect("mongodb://localhost:27017/casper-js-demo-tatiana", function (err, db) {
+
+    BR.Mongo = db;
 
     BR.Logger.debug('Connection to database established');
 
@@ -119,7 +123,7 @@ BR.Database.once('open', function () {
             });
 
         });
-    }, this);
+    }, {index: 'server'});
 });
 
 BR.SendToConnection = function (connection_data, data) {

@@ -31,6 +31,8 @@ BR.Rates = new Service({
     Events: {
         'Database Ready': function () {
 
+            this.Collection = BR.Mongo.collection('rates');
+
             BR.Cache.create(this.Name, function (ready) {
 
                 BR.Rates.updateTopRatesCache(function () {
@@ -113,7 +115,7 @@ BR.Rates = new Service({
         }, this);
 
         //Ищем отзыв по этим хэшам
-        BR.Rates.Model.find({Hash: {$in: hashes}}, 'Hash', {}, function (err, exist_hashes) {
+        BR.Rates.Collection.find({Hash: {$in: hashes}}, {Hash: true}, {}).toArray(function (err, exist_hashes) {
 
             exist_hashes = _.pluck(exist_hashes, 'Hash');
 
@@ -122,16 +124,14 @@ BR.Rates = new Service({
             _.each(rates, function (rate_data) {
 
                 if (!_.contains(exist_hashes, rate_data.hash)) {
-                    var rate = new BR.Rates.Model({
+                    BR.Rates.Collection.insert({
                         Hash: rate_data.hash,
                         Title: rate_data.title,
                         Cost: rate_data.cost,
                         Image: rate_data.image,
                         Rate: rate_data.rate,
                         Date: rate_data.date
-                    });
-                    //Сохраняем в БД
-                    rate.save(function () {
+                    }, function (err, rate) {
 
                         BR.Logger.debug('Добавлен новый отзыв', rate);
                     })
@@ -159,7 +159,10 @@ BR.Rates = new Service({
 
     getTopRates: function (next) {
 
-        this.Model.find({}, 'Title Image Rate Cost Date', {sort: {Date: 1}, limit: 25}, function (err, result) {
+        this.Collection.find({}, {Title: true, Image: true, Rate: true, Cost: true, Date: true}, {
+            sort: {Date: -1},
+            limit: 25
+        }).toArray(function (err, result) {
 
             next(result);
 
@@ -170,10 +173,10 @@ BR.Rates = new Service({
         try {
             var regexp = new RegExp(filter);
 
-            this.Model.find({Title: regexp}, 'Title Image Rate Cost Date', {
+            this.Collection.find({Title: regexp}, {Title: true, Image: true, Rate: true, Cost: true, Date: true}, {
                 sort: {Date: 1},
                 limit: 10
-            }, function (err, result) {
+            }).toArray(function (err, result) {
 
                 next(result);
 
