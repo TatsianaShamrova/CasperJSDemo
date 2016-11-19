@@ -1,0 +1,57 @@
+
+Запуск вручную граббера:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Запустить MongoDb сервис
+	для Windows: mongod --dbpath C:/mongo
+	для Linux: не нужно
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Запустить процесс Node(в коммандной строке находясь в папке Server) node Server
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Запустить каспер: для запуска в папке с этим файлом(Casper.js) пишем casperjs Casper.js   phantom не надо запускать
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Смена кодировки на UTF-8 в CMD Win:chcp 65001
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Освободите порт (необходимо при ошибке EADDRINUSE)
+fuser -k 3002/tcp
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Установка Casperjs:
+
+1 Установка PhantomJS:
+
+Обновляем систему и ставим зависимости:
+
+sudo apt-get update
+sudo apt-get install build-essential chrpath libssl-dev libxft-dev
+
+После этого ставим пакеты необходимые для корректной работы phantomjs:
+
+sudo apt-get install libfreetype6 libfreetype6-dev
+sudo apt-get install libfontconfig1 libfontconfig1-dev
+
+Для установки версии 2.1.1 делаем следующее:
+
+cd ~
+export PHANTOM_JS="phantomjs-2.1.1-linux-x86_64"
+wget https://bitbucket.org/ariya/phantomjs/downloads/$PHANTOM_JS.tar.bz2
+sudo tar xvjf $PHANTOM_JS.tar.bz2
+
+После распаковки архива переносим либы и линкуем бинарник:
+
+sudo mv $PHANTOM_JS /usr/local/share
+sudo ln -sf /usr/local/share/$PHANTOM_JS/bin/phantomjs /usr/local/bin
+
+После этого проверяем что система видит бинарник и версия нужная нам:
+
+root@ca062:~# phantomjs --version
+2.1.1

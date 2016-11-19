@@ -11,18 +11,18 @@ BR.Grabber = new Service({
     },
 
     run: function () {
-        //this.runCasperjsProcess();
+        this.runCasperjsProcess();
 
         setInterval(function () {
 
-            //BR.Grabber.runCasperjsProcess()
+            BR.Grabber.runCasperjsProcess()
 
         }, 3600 * 1000);
     },
 
     runCasperjsProcess: function () {
         var spawn = require('child_process').spawn;
-        var prc = spawn('casperjs', ['Casper.js']);
+        var prc = spawn('casperjs', ['Server/Casper.js']);
         prc.stdout.setEncoding('utf8');
         prc.stdout.on('data', function (data) {
             var str = data.toString();
