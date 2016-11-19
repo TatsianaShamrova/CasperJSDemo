@@ -156,7 +156,7 @@ BR.Grabber = new Service({
 
                 this.echo('Elements successfully found');
 
-            });
+            }, 30000);
 
         });
 
